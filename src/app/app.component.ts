@@ -20,7 +20,7 @@ export class AppComponent {
     this.todos$ = collectionData(coll);
 
     /**
-     * Die Funktion wird jedes aufgerufen wenn sich die Daten in der Datenbank ändern 
+     * Die Funktion wird jedes mal aufgerufen wenn sich die Daten in der Datenbank ändern 
      */
     this.todos$.subscribe((newTodos) => {
       console.log(newTodos);
