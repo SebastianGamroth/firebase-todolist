@@ -12,6 +12,12 @@ export class AppComponent {
   // variable todos$ bekommt eine variable Observable (die sich imer updated)
   // any = json
   todos$: Observable<any>;
+
+  todos: Array<any>;
+
+  // todoText input wert, (FormsModule import app.module)
+  todoText:string ='';
+
   // importieren Firestore und weisen der Variable firestore: zu
   constructor(firestore: Firestore) {
     // die collection aus firesotre die todos
@@ -24,7 +30,13 @@ export class AppComponent {
      */
     this.todos$.subscribe((newTodos) => {
       console.log(newTodos);
-    });
 
+      this.todos = newTodos;
+    });
   }
+
+  addToDo() {
+console.log(this.todoText)
+  }
+
 }

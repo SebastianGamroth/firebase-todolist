@@ -1,1 +1,8 @@
 <h1>todo</h1>
+
+<input [(ngModel)]="todoText" type="text">
+<button (click)="addToDo()">Hinzufügen</button>
+<!-- Liste mit Inhalt aus todo"name"  -->
+<ul>
+    <li *ngFor="let todo of todos">{{ todo['name'] }}</li>
+</ul>
