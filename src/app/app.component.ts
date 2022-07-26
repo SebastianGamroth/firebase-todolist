@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { doc, setDoc } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -16,10 +17,10 @@ export class AppComponent {
   todos: Array<any>;
 
   // todoText input wert, (FormsModule import app.module)
-  todoText:string ='';
+  todoText: string = '';
 
   // importieren Firestore und weisen der Variable firestore: zu
-  constructor(firestore: Firestore) {
+  constructor(private firestore: Firestore) {
     // die collection aus firesotre die todos
     const coll = collection(firestore, 'todos');
     // mit collectionData hollen wir die Daten aus coll
@@ -35,8 +36,14 @@ export class AppComponent {
     });
   }
 
+  /**
+   * Erstelle neue todo in Datanbank
+   */
   addToDo() {
-console.log(this.todoText)
+    // coll bekommt zugriff auf Datanbank firestore - todos
+    const coll = collection(this.firestore, 'todos');
+    // neues doc in coll erstellen mit Inhalt aus input todoText 
+    setDoc(doc(coll), { name: this.todoText });
   }
 
 }
